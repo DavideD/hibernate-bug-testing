@@ -1,4 +1,4 @@
-# hibernate-but-testing Project
+# hibernate-bug-testing Project
 
 This project uses Quarkus and has as purpose to show navigation properties possibile bugs of reactive hibernate.
 
