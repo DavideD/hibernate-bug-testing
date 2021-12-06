@@ -17,15 +17,16 @@ public class DeviceRepository {
 
     public Uni<List<Device>> getDevicesWithDetails() {
         return this.rxSessionFactory.openSession()
-                .flatMap(rxSession -> rxSession.createQuery("from Device devices", Device.class)
-                        .getResultList()
-                        .onItem()
-                        .transformToMulti(devices -> Multi.createFrom().iterable(devices))
-                        // Start fetching block
-                        .call(device -> Mutiny.fetch(device.getFeatures()))
-                        // end fetching block: if you remove this the test DeviceRepositoryTest::testGetDevicesWithDetails will fail
-                        .collect()
-                        .asList()
+                .flatMap(rxSession ->
+                        rxSession.createQuery("from Device devices", Device.class)
+                                .getResultList()
+                                .onItem()
+                                .transformToMulti(devices -> Multi.createFrom().iterable(devices))
+                                // Start fetching block
+                                .call(device -> Mutiny.fetch(device.getFeatures()))
+                                // end fetching block: if you remove this the test DeviceRepositoryTest::testGetDevicesWithDetails will fail
+                                .collect()
+                                .asList()
                 );
     }
 }

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @QuarkusTest
 public class DeviceRepositoryTest {
